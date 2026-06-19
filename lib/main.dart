@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'features/notes/presentation/bloc/notes_bloc.dart';
+import 'features/notes/presentation/pages/dashboard_page.dart';
 import 'firebase_options.dart';
 import 'injection_container.dart';
 
@@ -27,20 +29,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(
-          create: (_) => sl<AuthBloc>(),
-        ),
-        BlocProvider<NotesBloc>(
-          create: (_) => sl<NotesBloc>(),
-        ),
+        BlocProvider(create: (_) => sl<AuthBloc>()),
+        BlocProvider(create: (_) => sl<NotesBloc>()),
       ],
-
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const LoginPage(),
+        home: FirebaseAuth.instance.currentUser == null
+            ? const LoginPage()
+            : const DashboardPage(),
       ),
     );
   }
