@@ -27,7 +27,7 @@ class AuthRemoteDataSource {
     User user = credential.user!;
 
     UserModel userModel = UserModel(
-      id: user.uid,
+      // id: user.uid,
       name: name,
       email: email,
     );

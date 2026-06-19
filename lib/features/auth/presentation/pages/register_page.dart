@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../notes/presentation/pages/dashboard_page.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart';
@@ -72,7 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (_) => WelcomePage(user: state.user),
+                builder: (_) => DashboardPage(),
               ),
             );
           }

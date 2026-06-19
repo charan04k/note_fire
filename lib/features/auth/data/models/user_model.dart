@@ -2,7 +2,7 @@ import '../../domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity {
   UserModel({
-    required super.id,
+    // required super.id,
     required super.name,
     required super.email,
   });
@@ -19,7 +19,7 @@ class UserModel extends UserEntity {
       String id,
       ) {
     return UserModel(
-      id: id,
+      // id: id,
       name: json['name'],
       email: json['email'],
     );
