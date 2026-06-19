@@ -72,11 +72,39 @@ class _LoginPageState extends State<LoginPage> {
               }
 
               if (state is AuthFailure) {
-                print(state.message);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.message),
-                  ),
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) {
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      title: const Row(
+                        children: [
+                          Icon(
+                            Icons.error_outline,
+                            color: Colors.red,
+                          ),
+                          SizedBox(width: 8),
+                          Text('Login Failed'),
+                        ],
+                      ),
+                      content: Text(
+                        state.message.isNotEmpty
+                            ? state.message
+                            : 'Incorrect email or password.',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
                 );
               }
             },
