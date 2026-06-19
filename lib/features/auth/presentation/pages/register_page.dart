@@ -16,6 +16,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+  bool _submitted = false;
 
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -26,6 +27,10 @@ class _RegisterPageState extends State<RegisterPage> {
   bool obscureConfirm = true;
 
   void register() {
+    setState(() {
+      _submitted = true;
+    });
+
     if (!_formKey.currentState!.validate()) return;
 
     context.read<AuthBloc>().add(
@@ -35,6 +40,15 @@ class _RegisterPageState extends State<RegisterPage> {
         password: passwordController.text.trim(),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -88,6 +102,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         padding: const EdgeInsets.all(24),
                         child: Form(
                           key: _formKey,
+                          autovalidateMode: _submitted
+                              ? AutovalidateMode.onUserInteraction
+                              : AutovalidateMode.disabled,
                           child: Column(
                             crossAxisAlignment:
                             CrossAxisAlignment.stretch,
