@@ -4,39 +4,66 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
+/// Default [FirebaseOptions] for use with your Firebase apps.
+///
+/// Example:
+/// ```dart
+/// import 'firebase_options.dart';
+/// // ...
+/// await Firebase.initializeApp(
+///   options: DefaultFirebaseOptions.currentPlatform,
+/// );
+/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return android; // Fallback for web
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return ios;
-      case TargetPlatform.linux:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
-        return android; // Fallback for desktop
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.linux:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for linux - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       default:
-        return android; // Absolute fallback
+        throw UnsupportedError(
+          'DefaultFirebaseOptions are not supported for this platform.',
+        );
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCENsbYfVRSFFz3B8P2tg95kLJxo4tT26k',
-    appId: '1:178528250283:android:2508e51e3dae0441928aee',
-    messagingSenderId: '178528250283',
-    projectId: 'notefire-623d9',
-    storageBucket: 'notefire-623d9.firebasestorage.app',
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAlTS2blGY9Fies7o3rNO4Ldj3BqZ7QBtM',
+    appId: '1:717135808565:web:8b849ccfbeb780076ac97c',
+    messagingSenderId: '717135808565',
+    projectId: 'firenote-86373',
+    authDomain: 'firenote-86373.firebaseapp.com',
+    storageBucket: 'firenote-86373.firebasestorage.app',
+    measurementId: 'G-YNFFQXRCS1',
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyALAflkQ7P6ddXVyTr3RxKyTjvYmMz0iZ0',
-    appId: '1:178528250283:ios:b5ef39dc9ef8f513928aee',
-    messagingSenderId: '178528250283',
-    projectId: 'notefire-623d9',
-    storageBucket: 'notefire-623d9.firebasestorage.app',
-    iosBundleId: 'com.karthickcharanh.firebaseNote',
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyC2DSH9ekW_mpCAwZPBdfncS-Oe9Sicsxc',
+    appId: '1:717135808565:android:fb1abaa2013e5aff6ac97c',
+    messagingSenderId: '717135808565',
+    projectId: 'firenote-86373',
+    storageBucket: 'firenote-86373.firebasestorage.app',
   );
 }

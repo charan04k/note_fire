@@ -30,10 +30,15 @@ class NotesRemoteDatasource {
   Future<List<NoteModel>> getNotes() async {
     final uid = auth.currentUser!.uid;
 
+    print("object $uid");
+
     final snapshot = await firestore
         .collection('notes')
         .where('userId', isEqualTo: uid)
         .get();
+    
+    print(snapshot.docs.map((doc)=>doc.id));
+    print(snapshot.docs.map((doc)=>doc.data()));
 
     return snapshot.docs
         .map((doc) => NoteModel.fromFirestore(doc.id, doc.data()))
@@ -44,6 +49,7 @@ class NotesRemoteDatasource {
     required String title,
     required String description,
   }) async {
+    print("noteId $noteId");
     await firestore.collection('notes').doc(noteId).update({
       'title': title,
       'description': description,

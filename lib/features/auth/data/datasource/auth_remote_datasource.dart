@@ -45,23 +45,31 @@ class AuthRemoteDataSource {
     required String email,
     required String password,
   }) async {
-    UserCredential credential =
-    await auth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      UserCredential credential =
+      await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-    User user = credential.user!;
+      User user = credential.user!;
 
-    DocumentSnapshot document = await firestore
-        .collection('users')
-        .doc(user.uid)
-        .get();
+      DocumentSnapshot document = await firestore
+          .collection('users')
+          .doc(user.uid)
+          .get();
 
-    Map<String, dynamic> data =
-    document.data() as Map<String, dynamic>;
+      print(document.exists);
+      print(document.data());
+      Map<String, dynamic> data =
+      document.data()as Map<String, dynamic>;
 
-    return UserModel.fromJson(data, user.uid);
+      return UserModel.fromJson(data, user.uid);
+
+    } on FirebaseAuthException catch (e) {
+      print("Firebase Error: ${e.code}");
+      throw Exception(e.message);
+    }
   }
 
   // Logout

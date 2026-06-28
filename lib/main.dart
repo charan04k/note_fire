@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'features/notes/presentation/bloc/notes_bloc.dart';
 import 'features/notes/presentation/pages/dashboard_page.dart';
+import 'features/push_notification/push_notification.dart';
+import 'features/test_nav/route_app.dart';
+import 'features/test_nav/routing.dart';
 import 'firebase_options.dart';
 import 'injection_container.dart';
 
@@ -19,9 +22,31 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  try {
+    await NotificationService.initialize();
+  } catch (e, stackTrace) {
+    print("Notification Error: $e");
+    print(stackTrace);
+  }
+
   await init();
 
   runApp(const MyApp());
+}
+
+// void main() {
+//   runApp(const MyApp2());
+// }
+
+class MyApp2 extends StatelessWidget {
+  const MyApp2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routerConfig: router,
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {

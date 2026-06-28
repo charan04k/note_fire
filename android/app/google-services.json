@@ -1,32 +1,13 @@
 {
   "project_info": {
-    "project_number": "178528250283",
-    "project_id": "notefire-623d9",
-    "storage_bucket": "notefire-623d9.firebasestorage.app"
+    "project_number": "717135808565",
+    "project_id": "firenote-86373",
+    "storage_bucket": "firenote-86373.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:178528250283:android:dae42b817bbd4fe2928aee",
-        "android_client_info": {
-          "package_name": "com.app.firebase_note"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCENsbYfVRSFFz3B8P2tg95kLJxo4tT26k"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:178528250283:android:2508e51e3dae0441928aee",
+        "mobilesdk_app_id": "1:717135808565:android:fb1abaa2013e5aff6ac97c",
         "android_client_info": {
           "package_name": "com.karthickcharanh.firebaseNote"
         }
@@ -34,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCENsbYfVRSFFz3B8P2tg95kLJxo4tT26k"
+          "current_key": "AIzaSyC2DSH9ekW_mpCAwZPBdfncS-Oe9Sicsxc"
         }
       ],
       "services": {
